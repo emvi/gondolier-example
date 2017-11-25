@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"github.com/emvicom/gondolier"
 	_ "github.com/lib/pq"
+	"log"
 )
 
 type Customer struct {
@@ -37,6 +38,8 @@ func main() {
 	gondolier.Model(Customer{}, Order{}, OrderPosition{})
 	gondolier.Drop(Obsolete{})
 	gondolier.Migrate()
+
+	log.Println("Done. Check your database!")
 }
 
 func dbString() string {
